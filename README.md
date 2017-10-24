@@ -1,4 +1,4 @@
-GeoIP-lite
+GeoIP-lite (implemented with promises)
 ==========
 
 A native NodeJS API for the GeoLite data from MaxMind.
