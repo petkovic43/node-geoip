@@ -42,16 +42,23 @@ synopsis
 var geoip = require('geoip-lite');
 
 var ip = "207.97.227.239";
-var geo = geoip.lookup(ip);
 
-console.log(geo);
-{ range: [ 3479297920, 3479301339 ],
-  country: 'US',
-  region: 'TX',
-  city: 'San Antonio',
-  ll: [ 29.4889, -98.3987 ],
-  metro: 641,
-  zip: 78218 }
+geoip.lookup(ip).then(function(geodata) {
+  
+  console.log(geodata);
+                      { 
+                      range: [ 3479297920, 3479301339 ],
+                      country: 'US',
+                      region: 'TX',
+                      city: 'San Antonio',
+                      ll: [ 29.4889, -98.3987 ],
+                      metro: 641,
+                      zip: 78218
+                    }
+}).catch(function(err){
+  console.log(err);
+});
+
 ```
 
 installation
@@ -80,7 +87,11 @@ as an IPv4 address), pass it to the `lookup` method.  Note that you should remov
 IPv6 address before passing it to this method.
 
 ```javascript
-var geo = geoip.lookup(ip);
+var geo = geoip.lookup(ip).then(function(geodata) {
+  console.log(geodata);
+}).catch(function(err){
+  console.log(err);
+});;
 ```
 
 If the IP address was found, the `lookup` method returns an object with the following structure:
